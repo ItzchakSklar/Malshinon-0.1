@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -133,6 +134,68 @@ namespace Malshinon
             {
                 ConsolePrint.Errors(1, ex.ToString());
                 Console.WriteLine("getFullName");
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                closeConnection();
+            }
+            return nameList;
+
+        }
+        public string getCodeName(string query = "SELECT secret_code FROM people ", string first_name ="", string lest_name = "")
+        {
+            string code = "";
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
+            try
+            {
+                openConnection();
+                cmd = new MySqlCommand(query + $"WHERE first_name = '{first_name}' AND last_name = '{lest_name}'", _conn);
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    code = reader.GetString("secret_code");
+                else
+                {
+                    Console.WriteLine("a problem to loud the passord");
+                    code = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsolePrint.Errors(1, ex.ToString());
+                ConsolePrint.Maseg("getCodeName");
+            }
+            finally
+            {
+                if (reader != null && !reader.IsClosed)
+                    reader.Close();
+
+                closeConnection();
+            }
+            return code;
+        }
+        public List<string> getOllPasword(string query = "SELECT secret_code FROM people")
+        {
+            List<string> nameList = new List<string>();
+            MySqlCommand cmd = null;
+            MySqlDataReader reader = null;
+            try
+            {
+                openConnection();
+                cmd = new MySqlCommand(query, _conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    nameList.Add(reader.GetString("first_name"));
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsolePrint.Errors(1, ex.ToString());
+                Console.WriteLine("getFirstName");
             }
             finally
             {

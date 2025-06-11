@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Org.BouncyCastle.Asn1;
 
 namespace Malshinon
 {
@@ -13,7 +12,7 @@ namespace Malshinon
         public static void MenuChoice()
         {
             int Choice = Convert.ToInt32(Console.ReadLine());
-            switch (Choice) 
+            switch (Choice)
             {
                 case 1:
                     break;
@@ -35,6 +34,35 @@ namespace Malshinon
                     break;
                 case 10:
                     break;
+            }
+        }
+        public static int GetCoice(int Min,int Max)
+        {
+            int Coice = -1;
+            bool goodChoice = false;
+            int NumTry = 0;
+            do
+            {
+                NumTry++;
+                try
+                {
+                    Coice = Convert.ToInt32(ConsolePrint.Read());
+                    if (Coice >= Min && Coice <= Max)
+                        goodChoice = true;
+                    else 
+                    {
+                        ConsolePrint.InputErorrs(4);
+                        ConsolePrint.Maseg(4, $"{Min} and {Max}");
+                    }
+                }
+                catch
+                {
+                    ConsolePrint.InputErorrs(3);
+                    ConsolePrint.Maseg(4, $"{Min} and {Max}");
+                }
+            }
+            while (!goodChoice&&NumTry <= 15);
+            return Coice;
         }
     }
 }

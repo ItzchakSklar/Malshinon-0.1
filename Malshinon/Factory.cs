@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Org.BouncyCastle.Tls;
+
 
 namespace Malshinon
 {
@@ -66,6 +66,7 @@ namespace Malshinon
             People MinePeople = new People(-1,fullName, secretCode,typePeople,0,0);
             return MinePeople;
         }
+        public People CreatPeople(string fullName, string secretCode) { return CreatPeople(fullName, secretCode ,"reporter"); }
 
         //public IntelReport CreatReports(){}
     }

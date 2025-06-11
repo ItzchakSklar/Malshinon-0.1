@@ -1,0 +1,82 @@
+Program
+> main
+
+
+Factory
+> בנאי private  
+> CreatPeople > People
+> CreatReports > IntelReport
+
+
+ConsolePrint 
+> בנאי private
+> StartMenu 
+> InputErorrs
+> Errors
+
+
+People
+\ Id (primary key, auto) privet set
+\ Name(str) privet set
+\ secretCode(str,unique) privet set
+\ Type (ENUM or str) - (reporter, target, both, potential_agent) privet set
+\ NumReports (int,default 0) privet set
+\ NumMentions (int,default 0) privet set
+> בנאי
+> SetId + validation
+> SetFirstName + validation
+> SetLastName + validation
+> SetSecretCode + validation
+> SetType + validation
+> SetReportsAndMentions + validation
+> AddReports
+> AddMentions
+> override ToString	
+> proper > bool
+
+
+IntelReports
+\ id (int,key,auto) privet set
+\ ReporterId (key-people.id) privet set
+\ TargetId(dey-people.id) privet set
+\ Text (str) privet set
+\ TimeStamp(DateTime,default NOW()) privet set
+> בנאי 
+> SetId
+> SetReporter
+> SetTarget
+> SetText
+> SetTime
+> proper > bool
+
+
+קלאס deta
+\קישור לדאטה
+> בנאי התחברות לדאטה אם אין יוצר דרך sql.sql
+> Add people
+> Add IntelReports
+> peoplesname > list(names-str)
+> peopleCode(name) > code
+. people
+. IntelReports
+
+
+sql.sql
+יוצר טבלאות:
+(.. טבלה . עמודה)
+
+. people
+.. id (primary key, auto)
+.. first_name(var)
+.. last_name(var)
+.. secret_code(var,unique)
+.. type_people (ENUM or var) - (reporter, target, both, potential_agent)
+.. num_reports (int,default 0) 
+.. num_mentions (int,default 0)
+
+. IntelReports
+.. id (key, auto)
+.. reporter_id (key-people.id)
+.. target_id(dey-people.id)
+.. text (TEXT)
+.. timestamp(DateTime,default NOW())
