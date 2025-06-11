@@ -9,12 +9,20 @@ namespace Malshinon
     internal class ConsolePrint
     {
         private ConsolePrint() { }
+        public static void Menulanch()
+        {
+            ConsolePrint.Clean();
+            ConsolePrint.Maseg("Welcome to the system for report plies sing in or sing up");
+            ConsolePrint.Maseg(2);
+            ConsolePrint.Maseg("enter 1 to sing in\nenter 2 to sing up");
+            ConsolePrint.Maseg(3);
+        }
         public static void MenuStart()
         {
             Console.WriteLine("wellcome to malshinon enter your choice");
             Console.WriteLine("exit to exit");
         }
-        public static void Maseg(int maseg = 0) 
+        public static void Maseg(int maseg = 0, string msg= "") 
         {
             switch (maseg)
             {
@@ -22,6 +30,18 @@ namespace Malshinon
                     break;
                 case 1:
                     Console.WriteLine("Connection successful.");
+                    break;
+                case 2:
+                    Console.WriteLine("You have diffrend options:");
+                    break;
+                case 3:
+                    Console.WriteLine("pleas enter your chich:");
+                    break;
+                case 4:
+                    Console.WriteLine("pleas try again betwin "+msg);
+                    break;
+                case 5:
+                    Console.WriteLine();
                     break;
             }
         }
@@ -42,7 +62,17 @@ namespace Malshinon
                 case 2:
                     Console.WriteLine($"General Error: {Message}");
                     break;
+                case 3:
+                    Console.WriteLine("Not a good format of choice");
+                    break;
+                case 4:
+                    Console.WriteLine("The coice out of range");
+                    break;
             }
+        }
+        public static void InputErorrs(string Message = "")
+        {
+            Console.WriteLine(Message);
         }
         public static void Errors(int error = 0, string Massage = "")
         { 
@@ -65,5 +95,10 @@ namespace Malshinon
                     break;
             }
         }
+        public static string Read()
+        {
+            return Console.ReadLine();
+        }
+        public static void Clean() { Console.Clear(); }
     }
 }
