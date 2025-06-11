@@ -10,6 +10,8 @@ namespace Malshinon
     {
         static void Main(string[] args)
         {
+            Factory factory = Factory.getInstance();
+            ConsolePrint.MenuStart();
         }
     }
 }
